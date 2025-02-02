@@ -1,0 +1,49 @@
+.header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h1 {
+    font-weight: 400;
+  }
+  .header-actions {
+    display: flex;
+    gap: 8px;
+
+    .deleteButton {
+      color: rgb(154, 2, 2);
+    }
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .form-field-action-wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 24px;
+
+    .field-controls-wrapper {
+      display: grid;
+      gap: 8px;
+
+      .info-message {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 8px;
+        border: 1px solid #b76e05;
+        background-color: #ffda9742;
+        mat-icon {
+          color: #b76405;
+        }
+        span {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

@@ -1,1 +1,20 @@
-<p>task list works!</p>
+@if(data) {
+<div class="main-container">
+  <div class="heading-wrapper">
+    <h1>Tasks</h1>
+    <button mat-flat-button routerLink="/task/new">
+      <mat-icon>add</mat-icon>
+      Create New Task
+    </button>
+  </div>
+
+  <ag-grid-angular
+    style="width: 100%; height: 100%"
+    [columnDefs]="columnDefs"
+    [rowData]="data"
+    [defaultColDef]="defaultColDef"
+    domLayout="autoHeight"
+    (gridReady)="onGridReady($event)"
+  />
+</div>
+}

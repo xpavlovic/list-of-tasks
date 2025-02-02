@@ -1,3 +1,11 @@
-:host {
-  display: block;
+
+.main-container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+  .heading-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

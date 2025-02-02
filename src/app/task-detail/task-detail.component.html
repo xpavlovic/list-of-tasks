@@ -1,0 +1,74 @@
+@if(viewModel) {
+<div class="detail-wrapper">
+  <div class="header-wrapper">
+    <h1>{{ viewModel.title }}</h1>
+    <div class="header-actions">
+      @if(viewModel.isNew) {
+      <button mat-stroked-button (click)="onCancel()">Cancel</button>
+      <button mat-flat-button (click)="onSubmit()">Submit</button>
+      } @else {
+      <button mat-stroked-button class="deleteButton" (click)="onDeleteTask()">
+        <mat-icon>delete</mat-icon>
+        Delete
+      </button>
+      <button mat-stroked-button (click)="onCancel()">Cancel</button>
+      <button mat-flat-button (click)="onSave()">Save</button>
+      }
+    </div>
+  </div>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+      @if (form.controls['name'].invalid) {
+      <mat-error>Name is required</mat-error>
+      }
+    </mat-form-field>
+    <div class="form-field-action-wrapper">
+      <mat-form-field>
+        <mat-label>Select Type</mat-label>
+        <mat-select formControlName="type">
+          @if(taskItemService.listOfTaskTypes.length) { @for(taskType of
+          taskItemService.listOfTaskTypes; track $index) {
+          <mat-option [value]="taskType">{{ taskType }}</mat-option>
+          } }
+        </mat-select>
+        @if (form.controls['type'].invalid) {
+        <mat-error
+          >Type must be either 'wash-dishes' or 'vacuum-clean.</mat-error
+        >
+        }
+      </mat-form-field>
+      <button mat-flat-button (click)="onAddNewType()">
+        <mat-icon>add</mat-icon>
+        New Type
+      </button>
+    </div>
+    <div class="form-field-action-wrapper" formGroupName="fields">
+      <div class="field-controls-wrapper">
+        @if(viewModel.isNew) {
+        <div class="info-message">
+          <mat-icon>warning</mat-icon>
+          <span
+            >Please provide additional details of the by adding new
+            fields.</span
+          >
+        </div>
+        } @for(fieldControl of getFields(); track $index) {
+        <mat-form-field>
+          <mat-label>{{ fieldControl }}</mat-label>
+          <input matInput [formControlName]="fieldControl" />
+          @if (fields.controls[fieldControl].invalid) {
+          <mat-error>{{ fieldControl }} is required</mat-error>
+          }
+        </mat-form-field>
+        }
+      </div>
+      <button mat-flat-button (click)="onAddNewField()">
+        <mat-icon>add</mat-icon>
+        New Field
+      </button>
+    </div>
+  </form>
+</div>
+}
